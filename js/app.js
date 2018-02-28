@@ -1,9 +1,27 @@
 /*
  * Create a list that holds all of your cards
  */
+const cardImage = [
+  'fa-diamond',
+  'fa-diamond',
+  'fa-paper-plane-o',
+  'fa-paper-plane-o',
+  'fa-anchor',
+  'fa-anchor',
+  'fa-bolt',
+  'fa-bolt',
+  'fa-cube',
+  'fa-cube',
+  'fa-leaf',
+  'fa-leaf',
+  'fa-bicycle',
+  'fa-bicycle',
+  'fa-bomb',
+  'fa-bomb'
+];
+
 const cards = Array.from(document.querySelectorAll('.card'));
 
-console.log(cards);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -12,28 +30,30 @@ console.log(cards);
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-shuffle(cards);
-cards.forEach(function(card) {
-  card.addEventListener('click', function() {
-    card.classList.toggle('open');
-    card.classList.toggle('show');
+shuffle(cardImage);
+for (let i = 0; i < cards.length; i++) {
+  cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
+  cards[i].addEventListener('click', function() {
+    cards[i].classList.toggle('open');
+    cards[i].classList.toggle('show');
   });
-});
+}
 
-function shuffle(cards) {
-  let currentIndex = cards.length,
+console.log(cardImage);
+function shuffle(cardImage) {
+  let currentIndex = cardImage.length,
     temporaryValue,
     randomIndex;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    temporaryValue = cards[currentIndex];
-    cards[currentIndex] = cards[randomIndex];
-    cards[randomIndex] = temporaryValue;
+    temporaryValue = cardImage[currentIndex];
+    cardImage[currentIndex] = cardImage[randomIndex];
+    cardImage[randomIndex] = temporaryValue;
   }
 
-  return cards;
+  return cardImage;
 }
 
 /*
