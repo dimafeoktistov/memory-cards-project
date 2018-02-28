@@ -1,8 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
+const cards = Array.from(document.querySelectorAll('.card'));
 
-
+console.log(cards);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -11,20 +12,29 @@
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+shuffle(cards);
+cards.forEach(function(card) {
+  card.addEventListener('click', function() {
+    card.classList.toggle('open');
+    card.classList.toggle('show');
+  });
+});
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+function shuffle(cards) {
+  let currentIndex = cards.length,
+    temporaryValue,
+    randomIndex;
 
-    return array;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = cards[currentIndex];
+    cards[currentIndex] = cards[randomIndex];
+    cards[randomIndex] = temporaryValue;
+  }
+
+  return cards;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
