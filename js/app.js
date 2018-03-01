@@ -54,9 +54,13 @@ const replayButton = document.querySelector('.replay');
 const replayGame = document.querySelector('.restart');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-shuffle(cardImage);
-for (let i = 0; i < cards.length; i++) {
-  cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
+function displayCards() {
+  shuffle(cardImage);
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
+    cards[i].classList.remove('show', 'open', 'match', 'unmatched', 'disabled');
+  }
+  console.log('i am working');
 }
 
 function shuffle(cardImage) {
@@ -74,3 +78,5 @@ function shuffle(cardImage) {
 
   return cardImage;
 }
+
+document.addEventListener('DOMContentLoaded', displayCards);
