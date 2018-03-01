@@ -64,7 +64,14 @@ function shuffle(cardImage) {
 function flipCard(e) {
   if (e.target.classList.contains('card')) {
     e.target.classList.toggle('open');
+  } else {
+    e.target.parentElement.classList.toggle('open');
   }
+  console.log(e.target.firstElementChild.classList);
 }
 
+function addCardToCompare(e) {
+  let card = e.target.lastChild.classList;
+}
 deck.addEventListener('click', flipCard);
+deck.addEventListener('click', addCardToCompare);
