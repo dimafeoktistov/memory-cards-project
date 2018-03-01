@@ -33,10 +33,6 @@ const cards = Array.from(document.querySelectorAll('.card'));
 shuffle(cardImage);
 for (let i = 0; i < cards.length; i++) {
   cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
-  cards[i].addEventListener('click', function() {
-    cards[i].classList.toggle('open');
-    cards[i].classList.toggle('show');
-  });
 }
 
 console.log(cardImage);
