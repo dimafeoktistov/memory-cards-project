@@ -89,6 +89,10 @@ h1 {
   animation: shake 0.5s ease-in-out;
 }
 
+.deck .card.off {
+  pointer-events: none;
+}
+
 /*
  * Styles for the Score Panel
  */

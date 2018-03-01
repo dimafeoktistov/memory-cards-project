@@ -24,7 +24,7 @@ const deck = document.querySelector('.deck');
 // making array from all selected cards
 const cards = Array.from(document.querySelectorAll('.card'));
 
-// array to store opened cards
+// array to store closed cards
 let openCards = [];
 
 // initial variable to store moves
@@ -43,7 +43,7 @@ let minute = 0;
 let timePassed;
 
 // to avoid clicking the same card two times
-let clicked = true;
+let closed = true;
 
 const finishRating = document.querySelector('.rating');
 const finishTime = document.querySelector('.end-time');
@@ -58,7 +58,7 @@ function displayCards() {
   shuffle(cardImage);
   for (let i = 0; i < cards.length; i++) {
     cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
-    cards[i].classList.remove('show', 'open', 'match', 'unmatched', 'disabled');
+    cards[i].classList.remove('show', 'open', 'match', 'unmatched', 'off');
   }
   moves = 0;
   matchList = 0;
@@ -70,38 +70,43 @@ function displayCards() {
 }
 
 function openCard(e) {
-  // if (clicked) return;
-  e.target.classList.toggle('open');
-  e.target.classList.toggle('show');
-  openCards.push(e.target);
-  let cardsInside = openCards.length;
-  if (cardsInside === 2) {
-    countMove();
-    if (
-      openCards[0].firstElementChild.className ===
-      openCards[1].firstElementChild.className
-    ) {
-      matchList++;
-      for (let i = 0; i < 2; i++) {
-        openCards[i].classList.add('match');
-        openCards[i].classList.remove('show', 'open');
+  if (closed) {
+    e.target.classList.toggle('open');
+    e.target.classList.toggle('show');
+    e.target.classList.toggle('off');
+    openCards.push(e.target.firstElementChild);
+    let cardsInside = openCards.length;
+    if (cardsInside === 2) {
+      countMove();
+      if (openCards[0].className === openCards[1].className) {
+        matchList++;
+        for (let i = 0; i < 2; i++) {
+          openCards[i].parentElement.classList.add('match');
+        }
+        openCards = [];
+      } else {
+        failMatch();
       }
-      openCards = [];
-    } else {
-      failMatch();
     }
+    // finished();
   }
-  // finished();
   console.log(openCards);
 }
 
 function failMatch() {
+  closed = false;
   for (let i = 0; i < 2; i++) {
-    openCards[i].classList.add('unmatched');
+    openCards[i].parentElement.classList.add('unmatched');
   }
   setTimeout(function() {
+    closed = true;
     for (let i = 0; i < openCards.length; i++) {
-      openCards[i].classList.remove('show', 'open', 'unmatched');
+      openCards[i].parentElement.classList.remove(
+        'show',
+        'open',
+        'unmatched',
+        'off'
+      );
     }
     openCards = [];
   }, 1000);
