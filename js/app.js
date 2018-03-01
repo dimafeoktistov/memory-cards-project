@@ -63,6 +63,32 @@ function displayCards() {
   console.log('i am working');
 }
 
+function openCard() {
+  // if (clicked) return;
+  cards.classList.toggle('open');
+  cards.classList.toggle('show');
+  openCards.push(cards);
+  let cardsInside = openCards.length;
+  if (cardsInside === 2) {
+    movesCounter();
+    if (
+      openCards[0].firstElementChild.className ===
+      openCards[1].firstElementChild.className
+    ) {
+      matchList++;
+      for (let i = 0; i < 2; i++) {
+        openCards[i].classList.add('match');
+        openCards[i].classList.remove('show', 'open');
+      }
+      openCards = [];
+    } else {
+      notMatch();
+    }
+  }
+  finished();
+  console.log(openCards);
+}
+
 function shuffle(cardImage) {
   let currentIndex = cardImage.length,
     temporaryValue,
@@ -80,3 +106,6 @@ function shuffle(cardImage) {
 }
 
 document.addEventListener('DOMContentLoaded', displayCards);
+cards.forEach(function(card) {
+  card.addEventListener('click', openCard);
+});
