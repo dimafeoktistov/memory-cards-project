@@ -19,7 +19,7 @@ const cardImage = [
   'fa-bomb',
   'fa-bomb'
 ];
-
+const deck = document.querySelector('.deck');
 const cards = Array.from(document.querySelectorAll('.card'));
 
 /*
@@ -35,7 +35,6 @@ for (let i = 0; i < cards.length; i++) {
   cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
 }
 
-console.log(cardImage);
 function shuffle(cardImage) {
   let currentIndex = cardImage.length,
     temporaryValue,
@@ -62,10 +61,10 @@ function shuffle(cardImage) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-function flipCard() {
-  cards[i].classList.toggle('open');
+function flipCard(e) {
+  if (e.target.classList.contains('card')) {
+    e.target.classList.toggle('open');
+  }
 }
 
-for (var i = 0; i < cards.length; i++) {
-  cards[i].addEventListener('click', flipCard);
-}
+deck.addEventListener('click', flipCard);
