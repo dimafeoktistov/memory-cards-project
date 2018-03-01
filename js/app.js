@@ -21,7 +21,7 @@ const cardImage = [
 ];
 const deck = document.querySelector('.deck');
 const cards = Array.from(document.querySelectorAll('.card'));
-
+let cardIcon;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -62,16 +62,28 @@ function shuffle(cardImage) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 function flipCard(e) {
-  if (e.target.classList.contains('card')) {
+  if (e.target.classList == 'card' || e.target.classList == 'card open') {
     e.target.classList.toggle('open');
-  } else {
+  } else if (
+    e.target.classList == 'fa fa-diamond' ||
+    e.target.classList == 'fa fa-paper-plane-o' ||
+    e.target.classList == 'fa fa-anchor' ||
+    e.target.classList == 'fa fa-bolt' ||
+    e.target.classList == 'fa fa-cube' ||
+    e.target.classList == 'fa fa-leaf' ||
+    e.target.classList == 'fa fa-bicycle' ||
+    e.target.classList == 'fa fa-bomb'
+  ) {
     e.target.parentElement.classList.toggle('open');
   }
-  console.log(e.target.firstElementChild.classList);
+  // console.log(ic.classList);
 }
 
 function addCardToCompare(e) {
-  let card = e.target.lastChild.classList;
+  if (e.target.classList == 'card' || e.target.classList == 'card open') {
+    cardIcon = e.target.firstElementChild.classList;
+  }
+  console.log(cardIcon);
 }
 deck.addEventListener('click', flipCard);
 deck.addEventListener('click', addCardToCompare);
