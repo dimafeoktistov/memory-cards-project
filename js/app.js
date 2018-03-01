@@ -63,14 +63,14 @@ function displayCards() {
   console.log('i am working');
 }
 
-function openCard() {
+function openCard(e) {
   // if (clicked) return;
-  this.classList.toggle('open');
-  this.classList.toggle('show');
-  openCards.push(this);
+  e.target.classList.toggle('open');
+  e.target.classList.toggle('show');
+  openCards.push(e.target);
   let cardsInside = openCards.length;
   if (cardsInside === 2) {
-    movesCounter();
+    // movesCounter();
     if (
       openCards[0].firstElementChild.className ===
       openCards[1].firstElementChild.className
@@ -85,8 +85,20 @@ function openCard() {
       notMatch();
     }
   }
-  finished();
+  // finished();
   console.log(openCards);
+}
+
+function notMatch() {
+  for (let i = 0; i < 2; i++) {
+    openCards[i].classList.add('unmatched');
+  }
+  setTimeout(function() {
+    for (let i = 0; i < openCards.length; i++) {
+      openCards[i].classList.remove('show', 'open', 'unmatched', 'disabled');
+    }
+    openCards = [];
+  }, 1000);
 }
 
 function shuffle(cardImage) {

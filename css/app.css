@@ -81,6 +81,14 @@ h1 {
   font-size: 33px;
 }
 
+.deck .card.unmatched {
+  cursor: default;
+  background: #ff3232;
+  animation-delay: 3s;
+  -webkit-keyframes: shake 0.5s ease-in-out;
+  animation: shake 0.5s ease-in-out;
+}
+
 /*
  * Styles for the Score Panel
  */
