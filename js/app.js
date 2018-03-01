@@ -18,9 +18,6 @@ const cardImage = [
   'fa-bomb'
 ];
 
-// Selector for deck
-const deck = document.querySelector('.deck');
-
 // making array from all selected cards
 const cards = Array.from(document.querySelectorAll('.card'));
 
@@ -48,17 +45,16 @@ let closed = true;
 const finishRating = document.querySelector('.rating');
 const finishTime = document.querySelector('.end-time');
 const finishMoves = document.querySelector('.total-moves');
-const star = document.querySelector('.stars');
+const starRating = document.querySelector('.stars');
 const modal = document.querySelector('.modal');
 const replayButton = document.querySelector('.replay');
 const replayGame = document.querySelector('.restart');
 
-// Shuffle function from http://stackoverflow.com/a/2450976
 function displayCards() {
   shuffle(cardImage);
   for (let i = 0; i < cards.length; i++) {
     cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
-    cards[i].classList.remove('show', 'open', 'match', 'unmatched', 'off');
+    cards[i].classList.remove('open', 'match', 'unmatched', 'off');
   }
   moves = 0;
   matchList = 0;
@@ -72,7 +68,6 @@ function displayCards() {
 function openCard(e) {
   if (closed) {
     e.target.classList.toggle('open');
-    e.target.classList.toggle('show');
     e.target.classList.toggle('off');
     openCards.push(e.target.firstElementChild);
     let cardsInside = openCards.length;
@@ -101,12 +96,7 @@ function failMatch() {
   setTimeout(function() {
     closed = true;
     for (let i = 0; i < openCards.length; i++) {
-      openCards[i].parentElement.classList.remove(
-        'show',
-        'open',
-        'unmatched',
-        'off'
-      );
+      openCards[i].parentElement.classList.remove('open', 'unmatched', 'off');
     }
     openCards = [];
   }, 1000);
@@ -121,6 +111,8 @@ function countMove() {
     starCount[2].style.display = 'none';
   }
 }
+
+// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cardImage) {
   let currentIndex = cardImage.length,
     temporaryValue,
