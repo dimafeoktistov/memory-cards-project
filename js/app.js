@@ -31,7 +31,7 @@ let openCards = [];
 let moves = 0;
 
 let count = document.querySelector('.moves');
-const starCount = document.querySelectorAll('.fa-star');
+const starCount = Array.from(document.querySelectorAll('.fa-star'));
 
 // counts number of cards matched to determine win condition
 let matchList = 0;
@@ -60,6 +60,12 @@ function displayCards() {
     cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
     cards[i].classList.remove('show', 'open', 'match', 'unmatched', 'disabled');
   }
+  moves = 0;
+  matchList = 0;
+  count.innerHTML = 0;
+  for (let i = 0; i < starCount.length; i++) {
+    starCount[i].style.display = 'block';
+  }
   console.log('i am working');
 }
 
@@ -70,7 +76,7 @@ function openCard(e) {
   openCards.push(e.target);
   let cardsInside = openCards.length;
   if (cardsInside === 2) {
-    // movesCounter();
+    countMove();
     if (
       openCards[0].firstElementChild.className ===
       openCards[1].firstElementChild.className
@@ -82,25 +88,34 @@ function openCard(e) {
       }
       openCards = [];
     } else {
-      notMatch();
+      failMatch();
     }
   }
   // finished();
   console.log(openCards);
 }
 
-function notMatch() {
+function failMatch() {
   for (let i = 0; i < 2; i++) {
     openCards[i].classList.add('unmatched');
   }
   setTimeout(function() {
     for (let i = 0; i < openCards.length; i++) {
-      openCards[i].classList.remove('show', 'open', 'unmatched', 'disabled');
+      openCards[i].classList.remove('show', 'open', 'unmatched');
     }
     openCards = [];
   }, 1000);
 }
 
+function countMove() {
+  moves++;
+  count.innerHTML = moves;
+  if (moves < 4 && moves > 2) {
+    starCount[1].style.display = 'none';
+  } else if (moves > 4) {
+    starCount[2].style.display = 'none';
+  }
+}
 function shuffle(cardImage) {
   let currentIndex = cardImage.length,
     temporaryValue,
