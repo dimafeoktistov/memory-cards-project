@@ -65,9 +65,9 @@ function displayCards() {
 
 function openCard() {
   // if (clicked) return;
-  cards.classList.toggle('open');
-  cards.classList.toggle('show');
-  openCards.push(cards);
+  this.classList.toggle('open');
+  this.classList.toggle('show');
+  openCards.push(this);
   let cardsInside = openCards.length;
   if (cardsInside === 2) {
     movesCounter();
