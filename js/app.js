@@ -32,7 +32,9 @@ let zeroPlaceholder = 0;
 let closed = true;
 
 const count = document.querySelector('.moves');
+const countModal = document.querySelector('.moves-2');
 const timer = document.querySelector('.game-timer');
+const timerModal = document.querySelector('.game-timer-2');
 const cards = Array.from(document.querySelectorAll('.card'));
 const starCount = Array.from(document.querySelectorAll('.fa-star'));
 const scorePanel = document.querySelector('.score-panel');
@@ -43,7 +45,8 @@ const finishRating = document.querySelector('.rating');
 const finishTime = document.querySelector('.end-time');
 const finishMoves = document.querySelector('.total-moves');
 const starRating = document.querySelector('.stars');
-const modal = document.querySelector('.modal');
+const modal = document.querySelector('.js-modal');
+const closingModal = document.querySelector('.js-modal-close');
 const replayButton = document.querySelector('.replay');
 
 function displayCards() {
@@ -70,9 +73,11 @@ function displayCards() {
   playTimer.style.display = 'none';
   closed = true;
   openCards = [];
+  closeModal();
 }
 
 function countUp() {
+  timer.innerText = 'Your time is: 0:00';
   timeCounter = setInterval(function() {
     second++;
     if (second == 59) {
@@ -102,20 +107,36 @@ function openCard(e) {
           openCards[i].parentElement.classList.add('match');
         }
         openCards = [];
-        console.log(matchList);
       } else {
         failMatch();
       }
     }
   }
   winGame();
-  console.log(openCards);
 }
 
 function winGame() {
-  if (matchList === 8) {
-    console.log('you won!');
+  if (matchList === 1) {
+    pause();
+    openModal();
+    timerModal.innerText = `Final time is: ${min}:${zeroPlaceholder}${second}`;
   }
+  if (moves < 4 && moves > 2) {
+    starCount[4].style.display = 'none';
+  } else if (moves > 4) {
+    starCount[5].style.display = 'none';
+  }
+  countModal.innerHTML = moves;
+}
+
+function openModal() {
+  modal.classList.add('js-modal--opened');
+  modal.classList.remove('js-modal');
+}
+
+function closeModal() {
+  modal.classList.add('js-modal');
+  modal.classList.remove('js-modal--opened');
 }
 
 function failMatch() {
@@ -180,6 +201,7 @@ function startTimer() {
 }
 
 startGame.addEventListener('click', displayCards);
+replayButton.addEventListener('click', displayCards);
 pauseTimer.addEventListener('click', pause);
 playTimer.addEventListener('click', startTimer);
 cards.forEach(function(card) {

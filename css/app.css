@@ -166,12 +166,24 @@ h1 {
 
 .js-modal {
   position: absolute;
-  max-width: 450px;
-  top: 50%;
-  left: 50%;
-  /* transform: translateX(-100%); */
+  max-width: 500px;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
   border-radius: 4px;
   background-color: #fff;
+}
+
+.js-modal--opened {
+  position: fixed;
+  min-width: 400px;
+  max-width: 500px;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  border: 2px solid #000;
+  background-color: #fff;
+  top: 20%;
+  left: 50%;
 }
 
 .js-modal img {
@@ -187,21 +199,11 @@ h1 {
   -ms-flex-direction: column;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
   font-size: 30px;
 }
 
-/* Close button */
-.js-modal-close {
-  font-size: 30px;
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 48px;
-  height: 48px;
-  text-align: center;
-  color: #eee;
-  border-width: 0;
-  border-radius: 100%;
-  background-color: black;
+.js-modal-inner li,
+ul {
+  list-style: none;
+  display: inline-block;
 }
