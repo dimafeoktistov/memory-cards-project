@@ -150,3 +150,11 @@ h1 {
   box-shadow: inset 0 1px 0 0 #8dbf67;
   cursor: pointer;
 }
+
+.fa-play {
+  display: none;
+}
+
+.fa-pause {
+  display: none;
+}

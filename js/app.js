@@ -35,13 +35,16 @@ let matchList = 0;
 
 // variables for timer
 const timer = document.querySelector('.game-timer');
-let second = 0;
-let minute = 0;
-let timePassed;
+let second = 00;
+let min = 0;
+let zeroPlaceholder = 0;
+let timeCounter;
 
 // to avoid clicking the same card two times
 let closed = true;
 
+const pauseTimer = document.querySelector('.fa-pause');
+const playTimer = document.querySelector('.fa-play');
 const startGame = document.querySelector('.start');
 const finishRating = document.querySelector('.rating');
 const finishTime = document.querySelector('.end-time');
@@ -63,7 +66,50 @@ function displayCards() {
   for (let i = 0; i < starCount.length; i++) {
     starCount[i].style.display = 'block';
   }
-  startGame.textContent = 'Restart!';
+  clearInterval(timeCounter);
+  second = 00;
+  min = 0;
+  countUp();
+  setTimeout(function() {
+    pauseTimer.style.display = 'inline-block';
+  }, 1000);
+  startGame.style.display = 'none';
+}
+
+// function timing() {
+//   if (second < 10) {
+//     setInterval(function() {
+//       second++;
+//       return (timer.textContent = `Your time is: ${minute}:0${second}. Hurry up!`);
+//     }, 1000);
+//   } else if (second > 10 && second < 60) {
+//     setInterval(function() {
+//       second++;
+//       return (timer.textContent = `Your time is: ${minute}:${second}. Hurry up!`);
+//     }, 1000);
+//   } else {
+//     second = 0;
+//   }
+//   setInterval(function() {
+//     minute++;
+//     return minute;
+//   }, 60000);
+// }
+
+function countUp() {
+  timeCounter = setInterval(function() {
+    second++;
+    if (second == 59) {
+      second = 00;
+      min++;
+    }
+    if (second > 9) {
+      zeroPlaceholder = '';
+    } else if (second < 9) {
+      zeroPlaceholder = 0;
+    }
+    timer.innerText = `Your time is: ${min}:${zeroPlaceholder}${second}`;
+  }, 1000);
 }
 
 function openCard(e) {
@@ -138,6 +184,25 @@ function shuffle(cardImage) {
 }
 
 startGame.addEventListener('click', displayCards);
+// replayGame.addEventListener('click', displayCards);
+pauseTimer.addEventListener('click', function() {
+  closed = false;
+  cards.forEach(function(card) {
+    card.classList.add('off');
+  });
+  pauseTimer.style.display = 'none';
+  playTimer.style.display = 'inline-block';
+  clearInterval(timeCounter);
+});
+playTimer.addEventListener('click', function() {
+  closed = true;
+  cards.forEach(function(card) {
+    card.classList.remove('off');
+  });
+  countUp();
+  pauseTimer.style.display = 'inline-block';
+  playTimer.style.display = 'none';
+});
 cards.forEach(function(card) {
   card.addEventListener('click', openCard);
 });
