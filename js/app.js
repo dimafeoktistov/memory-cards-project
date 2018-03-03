@@ -42,6 +42,7 @@ let timePassed;
 // to avoid clicking the same card two times
 let closed = true;
 
+const startGame = document.querySelector('.start');
 const finishRating = document.querySelector('.rating');
 const finishTime = document.querySelector('.end-time');
 const finishMoves = document.querySelector('.total-moves');
@@ -62,7 +63,7 @@ function displayCards() {
   for (let i = 0; i < starCount.length; i++) {
     starCount[i].style.display = 'block';
   }
-  console.log('i am working');
+  startGame.textContent = 'Restart!';
 }
 
 function openCard(e) {
@@ -79,13 +80,20 @@ function openCard(e) {
           openCards[i].parentElement.classList.add('match');
         }
         openCards = [];
+        console.log(matchList);
       } else {
         failMatch();
       }
     }
-    // finished();
   }
+  winGame();
   console.log(openCards);
+}
+
+function winGame() {
+  if (matchList === 8) {
+    console.log('you won!');
+  }
 }
 
 function failMatch() {
@@ -129,7 +137,7 @@ function shuffle(cardImage) {
   return cardImage;
 }
 
-document.addEventListener('DOMContentLoaded', displayCards);
+startGame.addEventListener('click', displayCards);
 cards.forEach(function(card) {
   card.addEventListener('click', openCard);
 });

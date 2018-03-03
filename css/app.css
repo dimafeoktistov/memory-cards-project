@@ -87,6 +87,7 @@ h1 {
 }
 
 .deck .card.off {
+  cursor: default;
   pointer-events: none;
 }
 
@@ -114,5 +115,38 @@ h1 {
 
 .score-panel .restart {
   float: right;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: #7fbf4d;
+  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: linear-gradient(top, #7fbf4d, #63a62f);
+  border: 1px solid #63a62f;
+  border-bottom: 1px solid #5b992b;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+  box-shadow: inset 0 1px 0 0 #96ca6d;
+  color: #fff;
+  font: bold 25px/1 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
+    Geneva, Verdana, sans-serif;
+  padding: 7px 5px 8px 5px;
+  text-align: center;
+  text-shadow: 0 -1px 0 #4c9021;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background-color: #76b347;
+  background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: linear-gradient(top, #76b347, #5e9e2e);
+  -webkit-box-shadow: inset 0 1px 0 0 #8dbf67;
+  box-shadow: inset 0 1px 0 0 #8dbf67;
   cursor: pointer;
 }
