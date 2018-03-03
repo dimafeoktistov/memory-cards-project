@@ -35,10 +35,10 @@ let matchList = 0;
 
 // variables for timer
 const timer = document.querySelector('.game-timer');
+let timeCounter;
 let second = 00;
 let min = 0;
 let zeroPlaceholder = 0;
-let timeCounter;
 
 // to avoid clicking the same card two times
 let closed = true;
@@ -64,7 +64,7 @@ function displayCards() {
   matchList = 0;
   count.innerHTML = 0;
   for (let i = 0; i < starCount.length; i++) {
-    starCount[i].style.display = 'block';
+    starCount[i].style.display = 'inline-block';
   }
   clearInterval(timeCounter);
   second = 00;
@@ -75,6 +75,9 @@ function displayCards() {
   }, 1000);
   startGame.textContent = 'Restart!';
   scorePanel.style.display = 'flex';
+  playTimer.style.display = 'none';
+  closed = true;
+  openCards = [];
 }
 
 function countUp() {
