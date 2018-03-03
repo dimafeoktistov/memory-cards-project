@@ -101,7 +101,6 @@ h1 {
   -ms-flex-direction: column;
   flex-direction: column;
   align-items: center;
-  width: 550px;
   margin-bottom: 10px;
   font-size: 30px;
 }
@@ -116,11 +115,6 @@ h1 {
 .score-panel .stars li {
   list-style: none;
   display: inline-block;
-}
-
-.score-panel .restart {
-  float: right;
-  cursor: pointer;
 }
 
 .btn {
@@ -166,4 +160,48 @@ h1 {
 .fa-play,
 .fa-repeat {
   cursor: pointer;
+}
+
+/* modal window */
+
+.js-modal {
+  position: absolute;
+  max-width: 450px;
+  top: 50%;
+  left: 50%;
+  /* transform: translateX(-100%); */
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.js-modal img {
+  max-width: 100%;
+}
+
+/* Make the inner element relatively-positioned to contain the close button */
+.js-modal-inner {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+/* Close button */
+.js-modal-close {
+  font-size: 30px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  color: #eee;
+  border-width: 0;
+  border-radius: 100%;
+  background-color: black;
 }
