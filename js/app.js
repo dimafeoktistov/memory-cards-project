@@ -18,31 +18,23 @@ const cardImage = [
   'fa-bomb'
 ];
 
-// making array from all selected cards
-const cards = Array.from(document.querySelectorAll('.card'));
-
-// array to store closed cards
 let openCards = [];
-
-// initial variable to store moves
 let moves = 0;
-
-let count = document.querySelector('.moves');
-const starCount = Array.from(document.querySelectorAll('.fa-star'));
-
-// counts number of cards matched to determine win condition
 let matchList = 0;
 
 // variables for timer
-const timer = document.querySelector('.game-timer');
 let timeCounter;
 let second = 00;
 let min = 0;
 let zeroPlaceholder = 0;
 
-// to avoid clicking the same card two times
+// if card is closed it can be clicked
 let closed = true;
 
+const count = document.querySelector('.moves');
+const timer = document.querySelector('.game-timer');
+const cards = Array.from(document.querySelectorAll('.card'));
+const starCount = Array.from(document.querySelectorAll('.fa-star'));
 const scorePanel = document.querySelector('.score-panel');
 const pauseTimer = document.querySelector('.fa-pause');
 const playTimer = document.querySelector('.fa-play');
