@@ -43,6 +43,7 @@ let timeCounter;
 // to avoid clicking the same card two times
 let closed = true;
 
+const scorePanel = document.querySelector('.score-panel');
 const pauseTimer = document.querySelector('.fa-pause');
 const playTimer = document.querySelector('.fa-play');
 const startGame = document.querySelector('.start');
@@ -52,7 +53,6 @@ const finishMoves = document.querySelector('.total-moves');
 const starRating = document.querySelector('.stars');
 const modal = document.querySelector('.modal');
 const replayButton = document.querySelector('.replay');
-const replayGame = document.querySelector('.restart');
 
 function displayCards() {
   shuffle(cardImage);
@@ -73,28 +73,9 @@ function displayCards() {
   setTimeout(function() {
     pauseTimer.style.display = 'inline-block';
   }, 1000);
-  startGame.style.display = 'none';
+  startGame.textContent = 'Restart!';
+  scorePanel.style.display = 'flex';
 }
-
-// function timing() {
-//   if (second < 10) {
-//     setInterval(function() {
-//       second++;
-//       return (timer.textContent = `Your time is: ${minute}:0${second}. Hurry up!`);
-//     }, 1000);
-//   } else if (second > 10 && second < 60) {
-//     setInterval(function() {
-//       second++;
-//       return (timer.textContent = `Your time is: ${minute}:${second}. Hurry up!`);
-//     }, 1000);
-//   } else {
-//     second = 0;
-//   }
-//   setInterval(function() {
-//     minute++;
-//     return minute;
-//   }, 60000);
-// }
 
 function countUp() {
   timeCounter = setInterval(function() {
@@ -184,7 +165,6 @@ function shuffle(cardImage) {
 }
 
 startGame.addEventListener('click', displayCards);
-// replayGame.addEventListener('click', displayCards);
 pauseTimer.addEventListener('click', function() {
   closed = false;
   cards.forEach(function(card) {

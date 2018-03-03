@@ -81,7 +81,7 @@ h1 {
 .deck .card.unmatched {
   cursor: default;
   background: #ff3232;
-  animation-delay: 3s;
+  animation-delay: 0.5s;
   -webkit-keyframes: shake 0.5s ease-in-out;
   animation: shake 0.5s ease-in-out;
 }
@@ -96,9 +96,14 @@ h1 {
  */
 
 .score-panel {
-  text-align: left;
-  width: 345px;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  width: 550px;
   margin-bottom: 10px;
+  font-size: 30px;
 }
 
 .score-panel .stars {
@@ -133,7 +138,7 @@ h1 {
   color: #fff;
   font: bold 25px/1 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
     Geneva, Verdana, sans-serif;
-  padding: 7px 5px 8px 5px;
+  padding: 7px 10px 8px 10px;
   text-align: center;
   text-shadow: 0 -1px 0 #4c9021;
   margin-bottom: 10px;
@@ -151,10 +156,14 @@ h1 {
   cursor: pointer;
 }
 
-.fa-play {
+.fa-pause,
+.fa-play,
+.score-panel {
   display: none;
 }
 
-.fa-pause {
-  display: none;
+.fa-pause,
+.fa-play,
+.fa-repeat {
+  cursor: pointer;
 }
