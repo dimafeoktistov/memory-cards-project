@@ -167,8 +167,7 @@ function shuffle(cardImage) {
   return cardImage;
 }
 
-startGame.addEventListener('click', displayCards);
-pauseTimer.addEventListener('click', function() {
+function pause() {
   closed = false;
   cards.forEach(function(card) {
     card.classList.add('off');
@@ -176,8 +175,9 @@ pauseTimer.addEventListener('click', function() {
   pauseTimer.style.display = 'none';
   playTimer.style.display = 'inline-block';
   clearInterval(timeCounter);
-});
-playTimer.addEventListener('click', function() {
+}
+
+function startTimer() {
   closed = true;
   cards.forEach(function(card) {
     card.classList.remove('off');
@@ -185,7 +185,11 @@ playTimer.addEventListener('click', function() {
   countUp();
   pauseTimer.style.display = 'inline-block';
   playTimer.style.display = 'none';
-});
+}
+
+startGame.addEventListener('click', displayCards);
+pauseTimer.addEventListener('click', pause);
+playTimer.addEventListener('click', startTimer);
 cards.forEach(function(card) {
   card.addEventListener('click', openCard);
 });
