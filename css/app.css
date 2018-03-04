@@ -76,14 +76,17 @@ h1 {
   cursor: default;
   background: #02ccba;
   font-size: 33px;
+  animation-delay: 1.5s;
+  -webkit-keyframes: pulse 1.5s ease-in-out;
+  animation: pulse 1.5s ease-in-out;
 }
 
 .deck .card.unmatched {
   cursor: default;
   background: #ff3232;
-  animation-delay: 0.5s;
-  -webkit-keyframes: shake 0.5s ease-in-out;
-  animation: shake 0.5s ease-in-out;
+  animation-delay: 0.75s;
+  -webkit-keyframes: shake 0.75s ease-in-out;
+  animation: shake 0.75s ease-in-out;
 }
 
 .deck .card.off {

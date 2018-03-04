@@ -54,6 +54,10 @@ function displayCards() {
   for (let i = 0; i < cards.length; i++) {
     cards[i].innerHTML = `<i class="fa ${cardImage[i]}"></i>`;
     cards[i].classList.remove('open', 'match', 'unmatched', 'off');
+    cards[i].classList.add('animated', 'rubberBand');
+    setTimeout(function() {
+      cards[i].classList.remove('animated', 'rubberBand');
+    }, 2000);
   }
   moves = 0;
   matchList = 0;
@@ -65,9 +69,7 @@ function displayCards() {
   second = 00;
   min = 0;
   countUp();
-  setTimeout(function() {
-    pauseTimer.style.display = 'inline-block';
-  }, 1000);
+  pauseTimer.style.display = 'inline-block';
   startGame.textContent = 'Restart!';
   scorePanel.style.display = 'flex';
   playTimer.style.display = 'none';
@@ -121,11 +123,15 @@ function winGame() {
     openModal();
     timerModal.innerText = `Final time is: ${min}:${zeroPlaceholder}${second}`;
     playTimer.style.display = 'none';
+    modal.classList.add('animated', 'rotateIn');
+    setTimeout(function() {
+      modal.classList.remove('animated', 'rotateIn');
+    }, 1000);
   }
   if (moves < 4 && moves > 2) {
-    starCount[6].style.display = 'none';
-  } else if (moves > 4) {
     starCount[5].style.display = 'none';
+  } else if (moves > 4) {
+    starCount[4].style.display = 'none';
   }
   countModal.innerHTML = moves;
 }
