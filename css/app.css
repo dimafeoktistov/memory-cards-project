@@ -39,7 +39,7 @@ h1 {
 
 .deck {
   width: 660px;
-  min-height: 680px;
+  height: 680px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   padding: 32px;
   border-radius: 10px;
@@ -192,7 +192,6 @@ h1 {
 
 .js-modal {
   position: absolute;
-  max-width: 500px;
   top: 0;
   left: 0;
   transform: translateX(-100%);
@@ -202,18 +201,16 @@ h1 {
 
 .js-modal--opened {
   position: fixed;
-  min-width: 400px;
+  min-width: 300px;
   max-width: 500px;
-  transform: translate(-50%, -50%);
   border-radius: 4px;
   border: 2px solid #000;
   background-color: #fff;
-  top: 20%;
-  left: 50%;
-}
-
-.js-modal img {
-  max-width: 100%;
+  top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 /* Make the inner element relatively-positioned to contain the close button */
@@ -232,4 +229,47 @@ h1 {
 ul {
   list-style: none;
   display: inline-block;
+}
+
+/*
+media queries
+*/
+
+@media screen and (max-width: 700px) {
+  .deck {
+    width: 500px;
+    height: 500px;
+  }
+
+  .deck .card {
+    width: 100px;
+    height: 100px;
+  }
+
+  .js-modal--opened {
+    top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .deck {
+    width: 340px;
+    height: 340px;
+  }
+
+  .deck .card {
+    width: 65px;
+    height: 65px;
+  }
+
+  .js-modal-inner * {
+    font-size: 20px;
+  }
+
+  .js-modal--opened {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

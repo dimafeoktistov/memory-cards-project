@@ -123,10 +123,10 @@ function winGame() {
     openModal();
     timerModal.innerText = `Final time is: ${min}:${zeroPlaceholder}${second}`;
     playTimer.style.display = 'none';
-    modal.classList.add('animated', 'rotateIn');
-    setTimeout(function() {
-      modal.classList.remove('animated', 'rotateIn');
-    }, 1000);
+    // modal.classList.add('animated', 'rotateIn');
+    // setTimeout(function() {
+    //   modal.classList.remove('animated', 'rotateIn');
+    // }, 1000);
   }
   if (moves < 4 && moves > 2) {
     starCount[5].style.display = 'none';
