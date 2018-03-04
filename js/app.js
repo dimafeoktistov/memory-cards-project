@@ -120,9 +120,10 @@ function winGame() {
     pause();
     openModal();
     timerModal.innerText = `Final time is: ${min}:${zeroPlaceholder}${second}`;
+    playTimer.style.display = 'none';
   }
   if (moves < 4 && moves > 2) {
-    starCount[4].style.display = 'none';
+    starCount[6].style.display = 'none';
   } else if (moves > 4) {
     starCount[5].style.display = 'none';
   }
