@@ -8,7 +8,7 @@
 ## Instructions
 
 * [Installation](#installation)
-* [How to play](#how to play)
+* [How to play](#how-to-play)
 
 ### Installation
 
@@ -17,7 +17,7 @@ Game doesn't need any additional library to run. It written in vanilla JS, the o
 
 To preview demo visit - [this page](https://dimafeoktistov.github.io/memory-cards-project/).
 
-### How to play
+### How-to-play
 
 When you start the game you will see quick "how to play" instructions. Just press ok to start plaing.
 Game is won when player guess all 8 pairs of card. You can use keyboard shortcuts that listed in "how to play" instructions.
