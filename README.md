@@ -8,7 +8,7 @@
 ## Instructions
 
 * [Installation](#installation)
-* [How to play](#howtoplay)
+* [How to play](#how to play)
 
 ### Installation
 
