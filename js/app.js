@@ -136,6 +136,7 @@ function winGame() {
     openModal();
     timerModal.innerText = `Final time is: ${min}:${zeroPlaceholder}${second}`;
     playTimer.style.display = 'none';
+    gameStarted = false;
   }
   if (moves < 20 && moves > 12) {
     starCount[5].style.display = 'none';
@@ -143,7 +144,6 @@ function winGame() {
     starCount[4].style.display = 'none';
   }
   countModal.innerHTML = moves;
-  gameStarted = false;
 }
 
 //Funtction that opens modal after winning in the game
