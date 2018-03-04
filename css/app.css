@@ -219,6 +219,10 @@ h1 {
   background-color: #fff;
 }
 
+.js-modal-2 * {
+  font-size: 20px;
+}
+
 .js-modal--opened {
   position: fixed;
   min-width: 300px;

@@ -1,4 +1,4 @@
-// array to store types of cards icons
+// array to store types of cards icons, opened cards and moves and match list
 const cardImage = [
   'fa-diamond',
   'fa-diamond',
@@ -28,9 +28,12 @@ let second = 00;
 let min = 0;
 let zeroPlaceholder = 0;
 
-// if card is closed it can be clicked
+// if card is closed it can be clicked, and if pause already pressed it should unpause
 let closed = true;
+let pausePressed = false;
+let gameStarted = false;
 
+// setting up all global variables
 const count = document.querySelector('.moves');
 const countModal = document.querySelector('.moves-2');
 const timer = document.querySelector('.game-timer');
@@ -46,9 +49,15 @@ const finishTime = document.querySelector('.end-time');
 const finishMoves = document.querySelector('.total-moves');
 const starRating = document.querySelector('.stars');
 const modal = document.querySelector('.js-modal');
-const closingModal = document.querySelector('.dissmiss');
+const firstModal = document.querySelector('.js-modal-2');
+const closingModal = document.querySelector('.ok-2');
+const closingFirstModal = document.querySelector('.ok');
 const replayButton = document.querySelector('.replay');
 
+//loading all event listeners
+loadEventListeners();
+
+//Display the cards to start or restart game
 function displayCards() {
   shuffle(cardImage);
   for (let i = 0; i < cards.length; i++) {
@@ -77,8 +86,10 @@ function displayCards() {
   openCards = [];
   closeModal();
   timer.innerText = 'Your time is: 0:00';
+  gameStarted = true;
 }
 
+//Funstion for handling a timer
 function countUp() {
   timeCounter = setInterval(function() {
     second++;
@@ -95,6 +106,7 @@ function countUp() {
   }, 1000);
 }
 
+//Function to comapre opened cards
 function openCard(e) {
   if (closed) {
     e.target.classList.toggle('open');
@@ -117,35 +129,41 @@ function openCard(e) {
   winGame();
 }
 
+//Function that defines winning condition
 function winGame() {
-  if (matchList === 1) {
+  if (matchList === 8) {
     pause();
     openModal();
     timerModal.innerText = `Final time is: ${min}:${zeroPlaceholder}${second}`;
     playTimer.style.display = 'none';
-    // modal.classList.add('animated', 'rotateIn');
-    // setTimeout(function() {
-    //   modal.classList.remove('animated', 'rotateIn');
-    // }, 1000);
   }
-  if (moves < 4 && moves > 2) {
+  if (moves < 20 && moves > 12) {
     starCount[5].style.display = 'none';
-  } else if (moves > 4) {
+  } else if (moves > 20) {
     starCount[4].style.display = 'none';
   }
   countModal.innerHTML = moves;
+  gameStarted = false;
 }
 
+//Funtction that opens modal after winning in the game
 function openModal() {
   modal.classList.add('js-modal--opened');
   modal.classList.remove('js-modal');
 }
 
+// Functions that close modals on OK button
 function closeModal() {
   modal.classList.add('js-modal');
   modal.classList.remove('js-modal--opened');
 }
 
+function closeFirstModal() {
+  firstModal.classList.add('js-modal');
+  firstModal.classList.remove('js-modal--opened');
+}
+
+//Function that handles not correct match and flipping cards back
 function failMatch() {
   closed = false;
   for (let i = 0; i < 2; i++) {
@@ -160,17 +178,18 @@ function failMatch() {
   }, 1000);
 }
 
+//Function that handles moves counting
 function countMove() {
   moves++;
   count.innerHTML = moves;
-  if (moves < 4 && moves > 2) {
+  if (moves < 20 && moves > 12) {
     starCount[1].style.display = 'none';
-  } else if (moves > 4) {
+  } else if (moves > 20) {
     starCount[2].style.display = 'none';
   }
 }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle function to shuffle array
 function shuffle(cardImage) {
   let currentIndex = cardImage.length,
     temporaryValue,
@@ -187,6 +206,7 @@ function shuffle(cardImage) {
   return cardImage;
 }
 
+//Function that pauses timer
 function pause() {
   closed = false;
   cards.forEach(function(card) {
@@ -197,6 +217,7 @@ function pause() {
   clearInterval(timeCounter);
 }
 
+//Function that starts timer again
 function startTimer() {
   closed = true;
   cards.forEach(function(card) {
@@ -207,11 +228,46 @@ function startTimer() {
   playTimer.style.display = 'none';
 }
 
-startGame.addEventListener('click', displayCards);
-replayButton.addEventListener('click', displayCards);
-pauseTimer.addEventListener('click', pause);
-playTimer.addEventListener('click', startTimer);
-closingModal.addEventListener('click', closeModal);
-cards.forEach(function(card) {
-  card.addEventListener('click', openCard);
-});
+//Function to handle keyboard shortcuts
+function keysHandle(e) {
+  e.preventDefault;
+  switch (e.keyCode) {
+    case 83:
+      if (!gameStarted) {
+        displayCards();
+      }
+      break;
+    case 82:
+      if (gameStarted) {
+        displayCards();
+      }
+      break;
+    case 32:
+      if (gameStarted) {
+        if (pausePressed) {
+          e.preventDefault();
+          startTimer();
+          pausePressed = false;
+        } else {
+          e.preventDefault();
+          pause();
+          pausePressed = true;
+        }
+      }
+      break;
+  }
+}
+
+//Function that adds all event listeners I use
+function loadEventListeners() {
+  startGame.addEventListener('click', displayCards);
+  replayButton.addEventListener('click', displayCards);
+  pauseTimer.addEventListener('click', pause);
+  playTimer.addEventListener('click', startTimer);
+  closingModal.addEventListener('click', closeModal);
+  closingFirstModal.addEventListener('click', closeFirstModal);
+  cards.forEach(function(card) {
+    card.addEventListener('click', openCard);
+  });
+  document.addEventListener('keyup', keysHandle);
+}
