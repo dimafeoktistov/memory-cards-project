@@ -46,7 +46,7 @@ const finishTime = document.querySelector('.end-time');
 const finishMoves = document.querySelector('.total-moves');
 const starRating = document.querySelector('.stars');
 const modal = document.querySelector('.js-modal');
-const closingModal = document.querySelector('.js-modal-close');
+const closingModal = document.querySelector('.dissmiss');
 const replayButton = document.querySelector('.replay');
 
 function displayCards() {
@@ -74,10 +74,10 @@ function displayCards() {
   closed = true;
   openCards = [];
   closeModal();
+  timer.innerText = 'Your time is: 0:00';
 }
 
 function countUp() {
-  timer.innerText = 'Your time is: 0:00';
   timeCounter = setInterval(function() {
     second++;
     if (second == 59) {
@@ -204,6 +204,7 @@ startGame.addEventListener('click', displayCards);
 replayButton.addEventListener('click', displayCards);
 pauseTimer.addEventListener('click', pause);
 playTimer.addEventListener('click', startTimer);
+closingModal.addEventListener('click', closeModal);
 cards.forEach(function(card) {
   card.addEventListener('click', openCard);
 });
