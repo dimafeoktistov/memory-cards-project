@@ -188,6 +188,26 @@ h1 {
   cursor: pointer;
 }
 
+/* How to play section */
+
+.how-to-play {
+  width: 660px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 10px;
+  box-shadow: 2px 3px 4px 0 rgba(46, 61, 73, 0.5);
+  margin: 0 0 3em;
+  background-color: #fff;
+}
+
+.how-to-play h2 {
+  text-align: center;
+}
+
+.how-to-play p {
+  text-align: justify;
+}
+
 /* modal window */
 
 .js-modal {
@@ -213,7 +233,6 @@ h1 {
   right: 0;
 }
 
-/* Make the inner element relatively-positioned to contain the close button */
 .js-modal-inner {
   position: relative;
   padding: 10px;
@@ -231,6 +250,30 @@ ul {
   display: inline-block;
 }
 
+/* footer */
+
+footer {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.copy {
+  font-size: 1rem;
+  margin: 1rem auto;
+  border-top: 1px black solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social {
+  font-size: 2rem;
+}
+
+.social a:hover {
+  color: #50f;
+}
+
 /*
 media queries
 */
@@ -239,6 +282,11 @@ media queries
   .deck {
     width: 500px;
     height: 500px;
+    padding: 20px;
+  }
+
+  .how-to-play {
+    width: 500px;
   }
 
   .deck .card {
@@ -251,17 +299,28 @@ media queries
     margin-left: auto;
     margin-right: auto;
   }
+
+  .copy {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 450px) {
   .deck {
+    padding: 15px;
     width: 340px;
     height: 340px;
   }
 
   .deck .card {
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .how-to-play {
+    width: 340px;
   }
 
   .js-modal-inner * {
