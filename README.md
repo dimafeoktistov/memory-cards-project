@@ -8,6 +8,7 @@
 ## Instructions
 
 To start plaing just download this repository or clone it. And then open index.html file.
+To preview demo visit - [here](https://dimafeoktistov.github.io/memory-cards-project/)
 
 ## Contributing
 
